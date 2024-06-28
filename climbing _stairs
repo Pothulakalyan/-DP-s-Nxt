@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int Climb_stairs(int n,vector<int>&dp){
+        int l=0,r=0;
+        if(n==0) return 1;
+        if(n==1) return 1;
+        if(dp[n]!=-1) return dp[n];
+        l=Climb_stairs(n-1,dp);
+        r=Climb_stairs(n-2,dp);
+        dp[n]=l+r;
+        return dp[n]; 
+    }
+    int climbStairs(int n) {
+        vector<int>dp(n+1,-1);
+        int k=Climb_stairs(n,dp);
+        return k;
+
+        
+    }
+};
