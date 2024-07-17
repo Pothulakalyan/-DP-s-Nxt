@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+int fib(int n,vector<int>&ve){
+    if(n<2) return n;
+    if(ve[n]!=-1) return ve[n];
+    int left=fib(n-1,ve);
+    int right=fib(n-2,ve);
+    ve[n]=left+right;
+    return ve[n];
+} 
+int main() {
+  // write your code here...
+    int a;
+    cin>>a;
+    vector<int>ve(a+1,-1);
+    cout<<fib(a,ve);
+  
+  
+  return 0;
+}
