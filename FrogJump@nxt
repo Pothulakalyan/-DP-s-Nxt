@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int frogJump(int ind,int ve[] ,vector<int>dp){
+    //base case 1 
+    // if i reaches the 0th position that's way it returns 0 because already it reached their Aim
+    if(ind==0) return 0;
+    //base case2
+    // whenever you reached 1st index it's have only one step that's way ar[1]-ar[0] if
+    //you have further calls it have negative indexes that's return
+    if(ind==1) return abs(ve[1]-ve[0]);
+    //checking for dp whether the value is calculated or not in previous if it calculated then return calculated value
+    if(dp[ind]!=-1) return dp[ind];
+    //left call for choose for one step
+    int left=abs(ve[ind]-ve[ind-1]) + frogJump(ind-1,ve,dp);
+    //right call for choose two steps
+    int right=abs(ve[ind]-ve[ind-2]) + frogJump(ind-2,ve,dp);
+    dp[ind]=min(left,right);
+    return dp[ind];
+}
+int main(){
+    int n;
+    cin>>n;
+    int ve[n];
+    vector<int>dp(n+1,-1);
+    for(int i=0;i<n;i++) cin>>ve[i];
+    cout<<frogJump(n-1,ve,dp);
+}
